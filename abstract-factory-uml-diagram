@@ -1,0 +1,34 @@
+                +----------------------+
+                 |   AbstractFactory   |  <--- Abstract Interface for creating products
+                 +--------------------+
+                 | + createPhone()     |
+                 | + createCharger()   |
+                 +--------------------+
+                          /\
+                          ||
+        +-------------------------------------------+
+        |                                           |
++----------------------+                  +----------------------+
+|  AndroidFactory      |                  |  iPhoneFactory       |  <-- Concrete Factories
++----------------------+                  +----------------------+
+| + createPhone()      |                  | + createPhone()      |
+| + createCharger()    |                  | + createCharger()    |
++----------------------+                  +----------------------+
+        /\                                      /\
+        ||                                      ||
++-------------------+                +-------------------+
+| AndroidPhone      |                | iPhone            |  <-- Concrete Products
++-------------------+                +-------------------+
+| + makeCall()      |                | + makeCall()      |
++-------------------+                +-------------------+
++-------------------+                +-------------------+
+| AndroidCharger    |                | iPhoneCharger     |  <-- Concrete Products
++-------------------+                +-------------------+
+| + charge()        |                | + charge()        |
++-------------------+                +-------------------+
+
+Client
++----------------------------------+                <-- Client Code
+| Calls either AndroidFactory or   |
+| iPhoneFactory to get products    |
++----------------------------------+
