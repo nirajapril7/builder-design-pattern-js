@@ -1,0 +1,86 @@
+ //Abstract Factory
+class AbstractFactory {
+  createPhone() {
+    throw new Error('This method should be overridden');
+  }
+
+  createCharger() {
+    throw new Error('This method should be overridden');
+  }
+}
+
+// Concrete Factory for Android
+class AndroidFactory extends AbstractFactory {
+  createPhone() {
+    return new AndroidPhone();
+  }
+
+  createCharger() {
+    return new AndroidCharger();
+  }
+}
+
+// Concrete Factory for iPhone
+class iPhoneFactory extends AbstractFactory {
+  createPhone() {
+    return new iPhone();
+  }
+
+  createCharger() {
+    return new iPhoneCharger();
+  }
+}
+
+// Product classes for Android
+class AndroidPhone {
+  makeCall() {
+    return 'Making a call from Android Phone';
+  }
+}
+
+class AndroidCharger {
+  charge() {
+    return 'Charging Android Phone';
+  }
+}
+
+// Product classes for iPhone
+class iPhone {
+  makeCall() {
+    return 'Making a call from iPhone';
+  }
+}
+
+class iPhoneCharger {
+  charge() {
+    return 'Charging iPhone';
+  }
+}
+
+// Client code
+function getFactory(osType) {
+  switch (osType) {
+    case 'Android':
+      return new AndroidFactory();
+    case 'iPhone':
+      return new iPhoneFactory();
+    default:
+      throw new Error('Unknown OS type');
+  }
+}
+
+// Example usage
+const androidFactory = getFactory('Android');
+const androidPhone = androidFactory.createPhone();
+const androidCharger = androidFactory.createCharger();
+
+console.log(androidPhone.makeCall());  // Output: Making a call from Android Phone
+console.log(androidCharger.charge());  // Output: Charging Android Phone
+
+const iphoneFactory = getFactory('iPhone');
+const iphone = iphoneFactory.createPhone();
+const iphoneCharger = iphoneFactory.createCharger();
+
+console.log(iphone.makeCall());        // Output: Making a call from iPhone
+console.log(iphoneCharger.charge());   // Output: Charging iPhone
+
